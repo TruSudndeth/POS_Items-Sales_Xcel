@@ -1,0 +1,120 @@
+Option Explicit
+
+Sub AddItem()
+Dim ItemRow As Long, AvailRow As Long
+With Sheet1
+    If .Range("B5").Value = Empty Then Exit Sub
+    On Error Resume Next
+    .Shapes("ItemPic").Delete
+    On Error GoTo 0
+ItemRow = .Range("B5").Value 'Item Row
+AvailRow = .Range("K999").End(xlUp).Row + 1 'First Avail Row
+.Range("B6").Value = AvailRow 'Set Receipt Row
+.Range("E3").Value = Sheet2.Range("B" & ItemRow).Value 'Item Name
+.Range("F6").Value = Sheet2.Range("D" & ItemRow).Value 'Item Price
+.Range("F8").Value = 1 'Default Item Qty to 1
+
+'Add Item Detail to receipt
+.Range("K" & AvailRow).Value = .Range("E3").Value  'Item Name
+.Range("L" & AvailRow).Value = .Range("F8").Value 'Item Qty
+.Range("M" & AvailRow).Value = .Range("F6").Value 'Item Price
+.Range("N" & AvailRow).Value = "=L" & AvailRow & "*M" & AvailRow 'Total Price Formula
+
+On Error Resume Next
+If Dir(Sheet2.Range("E" & ItemRow).Value, vbDirectory) <> "" Then
+     With .Pictures.Insert(Sheet2.Range("E" & ItemRow).Value)
+        With .ShapeRange
+            .LockAspectRatio = msoTrue
+            .Height = 45
+            .Name = "ItemPic"
+        End With
+     End With
+     With .Shapes("ItemPic")
+        .Left = Sheet1.Range("D6").Left
+        .Top = Sheet1.Range("D6").Top
+        .Visible = msoCTrue
+     End With
+End If
+On Error GoTo 0
+.Range("E10:F10").ClearContents 'Clear Item Item
+.Range("E10").Select
+End With
+End Sub
+
+Sub EnterNumberBtn()
+With Sheet1
+   ActiveCell.Value = ActiveCell.Value & Right(Application.Caller, 1)
+End With
+End Sub
+
+Sub ClearItemBtn()
+With Sheet1
+    If ActiveCell.Address = "$E$10" Then
+            .Range("E10:F10").ClearContents
+    Else:
+        ActiveCell.ClearContents
+    End If
+End With
+End Sub
+
+Sub EnterDecimalBtn()
+    ActiveCell.Value = ActiveCell.Value & "."
+End Sub
+
+Sub EnterPayemntCell()
+Sheet1.Range("I7").Select
+End Sub
+
+Sub EnterPayType()
+Sheet1.Range("I6").Value = Application.Caller
+Sheet1.Range("I7").Select 'Enter Payement Cell
+End Sub
+
+
+Sub PrintReceipt()
+Dim LastItemRow As Long
+With Sheet1
+    If .Range("I7").Value < .Range("I5").Value Then
+        MsgBox "Please enter a payment at or above the total"
+        Exit Sub
+    End If
+    
+    .Range("S6").Value = .Range("I7").Value 'Enter Payment Amount
+    LastItemRow = .Range("K9999").End(xlUp).Row  'Last Item Row
+    If LastItemRow < 10 Then Exit Sub
+    .Range("B6").ClearContents 'Clear Select Receipt Row
+    .Range("FooterRng").Copy
+    .Range("M" & LastItemRow + 1).PasteSpecial xlPasteValues 'Paste value only
+    Application.CutCopyMode = False
+    With .Shapes("FooterGrp")
+        .Left = Sheet1.Range("K" & LastItemRow + 7).Left
+        .Top = Sheet1.Range("K" & LastItemRow + 7).Top
+        .Visible = msoCTrue
+    End With
+    .PageSetup.PrintArea = "K1:N" & LastItemRow + 11
+    .PrintOut , , , , True, , , , False
+    .Range("E10").Select
+End With
+End Sub
+
+Sub SaveAndClear()
+Dim LastItemRow As Long, FirstDBRow As Long, TotalRows  As Long
+With Sheet1
+     LastItemRow = .Range("K9999").End(xlUp).Row  'Last Item Row
+     TotalRows = LastItemRow - 9 'Total Items
+     FirstDBRow = Sheet3.Range("A99999").End(xlUp).Row + 1  'First Avail Row
+     Sheet3.Range("A" & FirstDBRow & ":A" & FirstDBRow + TotalRows - 1).Value = .Range("M5").Value 'Receipt #
+     Sheet3.Range("B" & FirstDBRow & ":B" & FirstDBRow + TotalRows - 1).Value = .Range("M6").Value 'Orde Date
+     Sheet3.Range("C" & FirstDBRow & ":C" & FirstDBRow + TotalRows - 1).Value = .Range("M7").Value 'Cashier
+     Sheet3.Range("D" & FirstDBRow & ":G" & FirstDBRow + TotalRows - 1).Value = .Range("K10:N" & LastItemRow).Value 'All ITem Detail
+    .Shapes("FooterGrp").Visible = msoFalse 'Hide Footer Group Shape
+    On Error Resume Next
+    .Shapes("ItemPic").Delete
+    On Error GoTo 0
+    .Range("K10:N9999").ClearContents
+    .Calculate
+    .Range("M5").Value = .Range("B7").Value 'Next Receipt #
+    .Range("B6,E3:F3,F6,F8,I7").ClearContents 'Clear Item fields
+    .Range("E10").Select
+End With
+End Sub

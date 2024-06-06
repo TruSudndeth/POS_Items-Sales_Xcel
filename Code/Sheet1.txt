@@ -1,0 +1,56 @@
+Option Explicit
+
+Private Sub Worksheet_Change(ByVal Target As Range)
+'On change of item, if Row found and add to receipt
+If Not Intersect(Target, Range("E10")) Is Nothing And Range("E10").Value <> Empty Then AddItem
+
+'On Change of Price Or Qty For Added Items
+If Not Intersect(Target, Range("F8,F6")) Is Nothing And Range("B4").Value = False And Range("B6").Value <> Empty Then
+    Dim RecptRow As Long
+    RecptRow = Range("B6").Value 'Receipt Row
+    If Not Intersect(Target, Range("F6")) Is Nothing Then Range("M" & RecptRow).Value = Target.Value 'Update Price
+     If Not Intersect(Target, Range("F8")) Is Nothing Then Range("L" & RecptRow).Value = Target.Value 'Update Qty
+End If
+
+End Sub
+
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+'On Selection of Receipt Item, load Item details
+
+If Not Intersect(Target, Range("K10:N9999")) Is Nothing And Range("K" & Target.Row).Value <> Empty Then
+Dim ItemRow As Long
+Dim ItemRange As Range, FoundItem As Range
+Set ItemRange = Sheet2.Range("Item_Name")
+On Error Resume Next
+Shapes("ItemPic").Delete
+On Error Resume Next
+
+        Range("B6").Value = Target.Row 'Selected Row
+        Range("B4").Value = True
+        Range("E3").Value = Range("K" & Target.Row).Value 'Item Name
+        Range("F8").Value = Range("L" & Target.Row).Value 'Item Qty
+        Range("F6").Value = Range("M" & Target.Row).Value 'Item Price
+        
+        Set FoundItem = ItemRange.Find(Range("K" & Target.Row).Value, , xlValues, xlWhole)
+       If Not FoundItem Is Nothing Then 'Load Picture if available
+       ItemRow = FoundItem.Row
+        'On Error Resume Next
+        If Dir(Sheet2.Range("E" & ItemRow).Value, vbDirectory) <> "" Then
+         With Pictures.Insert(Sheet2.Range("E" & ItemRow).Value)
+            With .ShapeRange
+                .LockAspectRatio = msoTrue
+                .Height = 45
+                .Name = "ItemPic"
+            End With
+         End With
+         With Shapes("ItemPic")
+            .Left = Sheet1.Range("D6").Left
+            .Top = Sheet1.Range("D6").Top
+            .Visible = msoCTrue
+         End With
+    End If
+On Error GoTo 0
+End If
+    Range("B4").Value = False
+End If
+End Sub
