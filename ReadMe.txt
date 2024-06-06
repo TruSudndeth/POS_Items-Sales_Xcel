@@ -17,6 +17,7 @@ Licenses:
 Code 39 Barcode Font $49.95
 https://www.softmatic.com/excel/manual.html
 
+Add logic keyboard logic to block modification to locked cells and jump to E10
 
 Development notes:
 Impliment Admin Access
@@ -29,3 +30,8 @@ Receipt Price Clicked Jump to Price F6
 
 Round to cents Every Where even before retrieving price from Items List
 	=ROUND(I3 * 0.1, 2)
+	
+Next button Seperate functionallity
+Clear recept
+
+Load reciept by number
