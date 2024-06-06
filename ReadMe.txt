@@ -26,3 +26,6 @@ Impiment Edit mode
 Receitp click on QTY should jump to F8
 Receipt Item Clicked jump to Scan Item E10:F10
 Receipt Price Clicked Jump to Price F6
+
+Round to cents Every Where even before retrieving price from Items List
+	=ROUND(I3 * 0.1, 2)
