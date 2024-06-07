@@ -17,9 +17,17 @@ Licenses:
 Code 39 Barcode Font $49.95
 https://www.softmatic.com/excel/manual.html
 
-Add logic keyboard logic to block modification to locked cells and jump to E10
 
 Development notes:
+__________________________________________
+Bug: Admin Lock when keyboard Enter, the selection is reselected asking for another password after change
+
+Bug: Update CalculateAndUpdateTotal when Removing item.
+Bug: Remove Item delets our formating rules.
+Bug: Crossed out items remain crossed out.
+
+Bug: Worksheet_Change() J4 needs to unlock with Admin password for modification no soft-Lock
+
 Impliment Admin Access
 Impiment Remove items
 Impiment Edit mode
@@ -35,3 +43,10 @@ Next button Seperate functionallity
 Clear recept
 
 Load reciept by number
+
+Feature: security, Log who tried to unlock soft lock when canceld or failed attempts
+
+Completed
+__________________________________________
+Bug: CalculateAndUpdateTotal is not counting QTY
+Add logic keyboard logic to block modification to locked cells and jump to E10

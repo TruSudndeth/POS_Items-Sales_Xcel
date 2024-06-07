@@ -44,6 +44,42 @@ On Error GoTo 0
 End With
 End Sub
 
+Sub RemoveItem()
+    Dim ws As Worksheet
+    Dim SelectedItemRow As Long, LastItemRow As Long
+    Dim i As Long
+    
+    Set ws = Sheet1 ' Change "Sheet1" to your actual sheet name
+    
+    ' Determine the row of the selected item
+    SelectedItemRow = ws.Range("B6").Value
+    
+    ' Exit if no item is selected
+    If SelectedItemRow = Empty Then
+        MsgBox "No item selected.", vbExclamation
+        Exit Sub
+    End If
+    
+    ' Find the last item row
+    LastItemRow = ws.Range("K999").End(xlUp).Row
+    
+    ' Delete the row of the selected item
+    ws.Rows(SelectedItemRow).Delete
+    
+    ' Shift the remaining items up by adjusting their row numbers
+    For i = SelectedItemRow + 1 To LastItemRow
+        ws.Cells(i - 1, "B").Value = i - 1 ' Update receipt row number
+        ws.Rows(i).Copy Destination:=ws.Rows(i - 1) ' Shift the row up
+    Next i
+    
+    ' Clear the row where the last item was removed
+    ws.Cells(LastItemRow, "B").Value = Empty
+    ws.Range("K" & LastItemRow & ":N" & LastItemRow).ClearContents
+    
+    MsgBox "Item removed successfully.", vbInformation
+End Sub
+
+
 Private Function IsCellLocked(cell As Range) As Boolean
     ' Return if cell IsLocked
     IsCellLocked = cell.Locked
@@ -101,30 +137,59 @@ Sub UpdateReceipt()
     End If
     
     Dim LastItemRow As Long
-    With Sheet1
+    Dim isSheetProtected As Boolean
+    Dim ws As Worksheet
+    Dim shape As shape
+    
+    Set ws = ThisWorkbook.Sheets("POS") ' Use the actual sheet name
+
+    With ws
+        ' Check if the sheet is protected
+        isSheetProtected = .ProtectContents
+        If isSheetProtected Then .Unprotect "yourpassword" ' Replace with your actual password
+        
         ' Check if the value in I7 is less than the value in I5
         If Not IsPaymentSufficient() Then
+            If isSheetProtected Then .Protect "yourpassword" ' Re-protect the sheet if it was originally protected
             Exit Sub ' Exit the Subroutine if payment is not sufficient
         End If
 
         .Range("S6").Value = .Range("I7").Value 'Enter Payment Amount
         LastItemRow = .Range("K9999").End(xlUp).Row  'Last Item Row
-        If LastItemRow < 10 Then Exit Sub
+        If LastItemRow < 10 Then
+            If isSheetProtected Then .Protect "yourpassword" ' Re-protect the sheet if it was originally protected
+            Exit Sub
+        End If
         .Range("B6").ClearContents 'Clear Select Receipt Row
         .Range("FooterRng").Copy
         .Range("M" & LastItemRow + 1).PasteSpecial xlPasteValues 'Paste value only
         Application.CutCopyMode = False
-        With .Shapes("FooterGrp")
-            .Left = Sheet1.Range("K" & LastItemRow + 7).Left
-            .Top = Sheet1.Range("K" & LastItemRow + 7).Top
-            .Visible = msoCTrue
-        End With
+        
+        ' Check if the shape "FooterGrp" exists and set its position
+        On Error Resume Next
+        Set shape = .Shapes("FooterGrp")
+        On Error GoTo 0
+        If Not shape Is Nothing Then
+            shape.Left = .Range("K" & LastItemRow + 7).Left
+            shape.Top = .Range("K" & LastItemRow + 7).Top
+            shape.Visible = msoCTrue
+        Else
+            MsgBox "Shape 'FooterGrp' not found."
+        End If
+        
         .PageSetup.PrintArea = "K1:N" & LastItemRow + 11
         .Range("E10").Select
+        
+        ' Re-protect the sheet if it was originally protected
+        If isSheetProtected Then .Protect "yourpassword" ' Replace with your actual password
     End With
+    
     ReceiptUpdated = True
     ChangeCellColor
 End Sub
+
+
+
 
 Function IsPaymentSufficient() As Boolean
     With Sheet1
@@ -205,18 +270,26 @@ End Sub
 Public Sub ChangeCellColor()
     Dim LastItemRow As Long
     Dim cell As Range
+    Dim ws As Worksheet
+    Dim isSheetProtected As Boolean
 
     ' Ensure ReceiptUpdated is declared at the module level
     ' Public ReceiptUpdated As Boolean
 
-    With ThisWorkbook.Sheets("POS") ' Use the actual sheet name
+    Set ws = ThisWorkbook.Sheets("POS") ' Use the actual sheet name
+
+    With ws
+        ' Check if the sheet is protected
+        isSheetProtected = .ProtectContents
+        If isSheetProtected Then .Unprotect "yourpassword" ' Replace "yourpassword" with your actual password
+
         ' Find the last item row
         LastItemRow = .Range("K9999").End(xlUp).Row + 1
 
         ' Loop through each cell in the range
         For Each cell In .Range("K10:N" & LastItemRow - 1)
-            ' Temporarily unlock the cell
-            cell.Locked = False
+            ' Temporarily unlock the cell if the sheet is protected
+            If isSheetProtected Then cell.Locked = False
 
             ' Check if ReceiptUpdated is false
             If Not ReceiptUpdated Then
@@ -227,20 +300,43 @@ Public Sub ChangeCellColor()
                 cell.Interior.ColorIndex = xlColorIndexNone
             End If
 
-            ' Lock the cell again
-            cell.Locked = True
+            ' Lock the cell again if it was temporarily unlocked
+            If isSheetProtected Then cell.Locked = True
         Next cell
+
+        ' Re-protect the sheet if it was originally protected
+        If isSheetProtected Then .Protect "yourpassword" ' Replace "yourpassword" with your actual password
     End With
 End Sub
 
-Sub LockAllCells()
-    ' Lock all cells in Sheet1
-    Sheet1.Cells.Locked = True
-    ProtectFormulas
+
+Public Sub LockAllCells()
+    Dim ws As Worksheet
+    Set ws = Sheet1 ' Change to your actual sheet name
+    
+    ' Unlock all cells
+    ws.Cells.Locked = False
+    
+    ' Protect the worksheet
+    ws.Protect Password:="yourpassword", UserInterfaceOnly:=True
+    
+    ' Lock all cells except the ones under ProtectFormulas
+    Dim cell As Range
+    Dim protectRange As Range
+    Set protectRange = ws.Range("F6,F8,E10:F10,I7") ' Range to remain unlocked
+    
+    For Each cell In ws.UsedRange
+        If Intersect(cell, protectRange) Is Nothing Then
+            cell.Locked = True
+        End If
+    Next cell
 End Sub
 
 Public Sub ProtectFormulas()
-    With Sheet1
+    Dim ws As Worksheet
+    Set ws = Sheet1 ' Change to your actual sheet name
+    
+    With ws
         ' Unlock cells that can be edited
         .Range("F6,F8,E10:F10,I7").Locked = False
 
@@ -249,12 +345,19 @@ Public Sub ProtectFormulas()
     End With
 End Sub
 
+
 Sub UnlockCells()
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Sheets("POS") ' Change "Sheet1" to your sheet name
 
+    ' Check if the sheet is protected
+    Dim isSheetProtected As Boolean
+    isSheetProtected = ws.ProtectContents
+    
     ' Unprotect the sheet (if it's protected)
-    ws.Unprotect Password:="yourpassword" ' Change "yourpassword" to your password
+    If isSheetProtected Then
+        ws.Unprotect Password:="yourpassword" ' Change "yourpassword" to your password
+    End If
 
     ' Unlock all cells
     ws.Cells.Locked = False
@@ -262,9 +365,12 @@ Sub UnlockCells()
     ' Or unlock specific cells only
     ' ws.Range("A1:B10").Locked = False ' Example for specific range
 
-    ' Reprotect the sheet (optional)
-    ' ws.Protect Password:="yourpassword" ' Change "yourpassword" to your password
+    ' Reprotect the sheet (if it was originally protected)
+    If isSheetProtected Then
+        ws.Protect Password:="yourpassword" ' Change "yourpassword" to your password
+    End If
 
     MsgBox "Cells have been unlocked!", vbInformation
 End Sub
+
 
