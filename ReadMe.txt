@@ -20,6 +20,7 @@ https://www.softmatic.com/excel/manual.html
 
 Development notes:
 __________________________________________
+Bug: Adding a Decimal doesn't register
 Bug: Admin Lock when keyboard Enter, the selection is reselected asking for another password after change
 
 Bug: Update CalculateAndUpdateTotal when Removing item.
@@ -44,6 +45,7 @@ Clear recept
 
 Load reciept by number
 
+Feature: Payment numbers fill from cents to dollars
 Feature: security, Log who tried to unlock soft lock when canceld or failed attempts
 
 Completed
