@@ -5,11 +5,11 @@ How to Use:
 Setup:
 		1. Enable Macros
 
-		Install Barcode 39 font
+		Install Barcode 39 font (File Included)
 		2. Downlaod Barcode Font demo. Soft Code 39 (Demo)
 			https://www.softmatic.com/excel/manual.html
 		3. Unzip zip file Barcode-AddIn-Fonts-Excel-365-Demo.zip
-		4. Navigate to Fonts folder Right click and Install
+		4. Navigate to Fonts folder Right click and Install to Windows
 		5. 
 
 
@@ -18,49 +18,93 @@ Code 39 Barcode Font $49.95
 https://www.softmatic.com/excel/manual.html
 
 
-Development notes:
+
+
+Development Version Logs:
 __________________________________________
 UIUX: Call event when Quanity is selected and clear image, we cant enter QTY before adding item must find a solution for fast scanning either after scan. Clear cell before entering numeric values. allow numeric only.
 
-Bug: When copying item to sale, copy both the strickthrough and no strickthrough
+UX&Bug: When entering payment and you dont hit enter, clicking preview should enter and then preview, also if you hit enter, on payment, auto preview.
 
 Bug: Receipt Number Increments based on Item counting.
 	Other bug, Receipt number doesn't update to current reciept When making changes
 
 Bug: Adding a Decimal doesn't register
 	When empty point registers
+Bug: Focus On non editable cells must clear on focus (E10:F10, I7, F6, F8, J4)
 	
-Bug: Performance, When locking Sheet takes foever to finish. (remove any itterations)
-	
-Feature: Worksheet_Change() J4 needs to unlock with Admin password for modification no soft-Lock
+Feature: Image location should search have address of containing folder called Image or image under resources.
 
 Impliment Admin Access
 Impiment Edit mode
 
-
 Receitp click on QTY should jump to F8
 Receipt Price Clicked Jump to Price F6
-
-Bug: Focus On non editable cells must clear on focus (E10:F10, I7, F6, F8, J4)
 
 Round to cents Every Where even before retrieving price from Items List
 	=ROUND(I3 * 0.1, 2)
 	
 Clear recept
 
+Feature: LogIn As, admin access needed
 Feature: Load reciept by number
-
 Feature: double click
 	Receipt Item Clicked jump to Scan Item E10:F10
-	
+Feature: LogIn As, admin access needed
 Feature: ?? Payment numbers fill from cents to dollars
 Feature: security, Log who tried to unlock soft lock when canceld or failed attempts
 Feature: Button Jump to Items Sheet to see the List of items
+Feature: Seperate all sheets for version control. POS, Items, Sales.
+	On Open, search for needed files if it doesn't exist create it.
+	Item sheet requirements
+		Create xcel file and name it Items
+		Cell Range A1:E1 Merge and align Center, value = "Items"
+		cell A2 value = Item ID, B2 value = Item Name, C2 value = Item Description, D2 value = Price, E2 value = Image
+		Cell Range A1:E2
+			 Align center
+			 color light green
+			 Boarder All
+		Cell Range A3:N9999
+			Align Center
+		Cell Range B3:N9999
+			Align left
+		Cell Range C3:N9999
+			Align Left
+		Cell Range D3:N9999
+			Align Center
+			
+	Sales Sheet Requirments
+		Create xcel file and name it Sales
 
+Feature: Create a Cashier Log in - with their own Password, also they must enter their password twice once for initial and the second to confirm the initial password.
+Feature: Password Encription and Decription for Validators
 
-Completed
+Development Change Log:
 __________________________________________
 						UnStaged Commit:
+Bug: Entering Item should clear Item selection. (ClearContents B6)
+Bug: When no item is selected, item image price and Qty should be empty
+Feature: Admin Password Validator
+Fix: Lock Sheet to not allow Edit to items and images, icons, buttons
+Bug: Change is Negative in Receipt footer Change: ()
+Fix: after removing item return back to E10 for the next item
+Bug: Performance, When locking Sheet takes forever to finish. (remove any iterations)
+Feature: Worksheet_Change() J4 needs to unlock with Admin password for modification no soft-Lock
+Bug: When copying item to sale, copy both the strickthrough and no strickthrough
+Fix: On Open Must clear all like Next
+	Hide Item picutre
+	RemoveTotal
+	Subtotal
+		Tax
+		Change
+		Total
+
+
+						Staged Commit:
+Bug: Remove Item deleats our formating rules.
+Add logic keyboard logic to block modification to locked cells and jump to E10
+Bug: CalculateAndUpdateTotal is not counting QTY
+Bug: Admin Lock when keyboard Enter, the selection is reselected asking for another password after change
 Bug: Receipt Number Refference doesn't update Recept
 Next button Seperate functionallity (Next)
 Bug: Crossed out items remain crossed out.
@@ -69,9 +113,3 @@ Bug: When sheet is locked Tax rate cant be changed.
 Bug: TaxRate after entering its asking for admin password again.
 Bug: When hitting Preview finding last recipt item on column M must unlock M cell past then lock again.
 Feature: Impiment Remove items
-
-						Staged Commit:
-Bug: Remove Item deleats our formating rules.
-Add logic keyboard logic to block modification to locked cells and jump to E10
-Bug: CalculateAndUpdateTotal is not counting QTY
-Bug: Admin Lock when keyboard Enter, the selection is reselected asking for another password after change
