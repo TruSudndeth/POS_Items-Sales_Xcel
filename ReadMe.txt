@@ -24,20 +24,16 @@ Development Version Logs:
 __________________________________________
 Finishing up: Clear any unwanted Message boxes, MsgBox
 
-Bug: SelectionChange On Cells (E10:F10, I7, F6, F8, J4) Save the cell value as string then clear it. 
-	if selection change other then cell cleared past that value back to original cell.
-	Create a seperate function called by cells (E10:F10, I7, F6, F8,) and cell J4
-	Save value and re enter if cell changed from original cell.
-
 UX&Bug: When entering payment and you dont hit enter, clicking preview dissables cell on escape. When cell change should enter and then preview, (auto preview)
 	
 Round to cents Every Where Currency Regulations
 	=ROUND(I3 * 0.1, 2)
 	
-Bug: On Next Cash should be default on cell I6
+Bug: On "Next" Cash should be default on cell I6
 
 
 --------------------Beyond Basic POS
+Feature: Create Custom Item and price to Items WorkSheet, while in POS sheet.
 Feature: Image location should search worksheet location address of containing folder called Image or image under resources. to not have the full File directory name.
 Feature: LogIn As, admin access needed
 Feature: Load reciept by number
@@ -79,6 +75,10 @@ __________________________________________
 
 
 -------------------------Staged Commit:
+Bug: SelectionChange On Cells (E10:F10, I7, F6, F8, J4) Save the cell value as string then clear it. 
+	if selection change other then cell cleared past that value back to original cell.
+	Create a seperate function called by cells (E10:F10, I7, F6, F8,) and cell J4
+	Save value and re enter if cell changed from original cell.
 Receitp click on QTY should jump to QTY F8
 Receipt Clicked on price Jump to Price F6
 Impliment Admin Access
