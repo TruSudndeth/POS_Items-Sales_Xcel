@@ -15,37 +15,28 @@ Setup:
 
 Licenses:
 Code 39 Barcode Font $49.95
-https://www.softmatic.com/excel/manual.html
+	https://www.softmatic.com/excel/manual.html
 
 
 
 
 Development Version Logs:
 __________________________________________
-UIUX: Call event when Quanity is selected and clear image, we cant enter QTY before adding item must find a solution for fast scanning either after scan. Clear cell before entering numeric values. allow numeric only.
+UIUX: Call event when Quantity is selected and clear image, we cant enter QTY before adding item must find a solution for fast scanning either after scan. Clear cell before entering numeric values. allow numeric only.
 
-UX&Bug: When entering payment and you dont hit enter, clicking preview should enter and then preview, also if you hit enter, on payment, auto preview.
+UX&Bug: When entering payment and you dont hit enter, clicking preview dissables cell on escape. When cell change should enter and then preview, (auto preview)
 
-Bug: Receipt Number Increments based on Item counting.
-	Other bug, Receipt number doesn't update to current reciept When making changes
-
-Bug: Adding a Decimal doesn't register
-	When empty point registers
-Bug: Focus On non editable cells must clear on focus (E10:F10, I7, F6, F8, J4)
+Bug: SelectionChange On Cells (E10:F10, I7, F6, F8, J4) Save the cell value as string then clear it. 
+	if selection change other then cell cleared past that value back to original cell.
+	Create a seperate function called by cells (E10:F10, I7, F6, F8,) and cell J4
+	Save value and re enter if cell changed from original cell.
 	
-Feature: Image location should search have address of containing folder called Image or image under resources.
-
-Impliment Admin Access
-Impiment Edit mode
-
-Receitp click on QTY should jump to F8
-Receipt Price Clicked Jump to Price F6
-
-Round to cents Every Where even before retrieving price from Items List
+Round to cents Every Where Currency Regulations
 	=ROUND(I3 * 0.1, 2)
-	
-Clear recept
 
+
+--------------------Beyond Basic POS
+Feature: Image location should search worksheet location address of containing folder called Image or image under resources. to not have the full File directory name.
 Feature: LogIn As, admin access needed
 Feature: Load reciept by number
 Feature: double click
@@ -79,18 +70,20 @@ Feature: Seperate all sheets for version control. POS, Items, Sales.
 Feature: Create a Cashier Log in - with their own Password, also they must enter their password twice once for initial and the second to confirm the initial password.
 Feature: Password Encription and Decription for Validators
 
+
 Development Change Log:
 __________________________________________
-						UnStaged Commit:
-Bug: Entering Item should clear Item selection. (ClearContents B6)
-Bug: When no item is selected, item image price and Qty should be empty
-Feature: Admin Password Validator
-Fix: Lock Sheet to not allow Edit to items and images, icons, buttons
-Bug: Change is Negative in Receipt footer Change: ()
-Fix: after removing item return back to E10 for the next item
-Bug: Performance, When locking Sheet takes forever to finish. (remove any iterations)
-Feature: Worksheet_Change() J4 needs to unlock with Admin password for modification no soft-Lock
-Bug: When copying item to sale, copy both the strickthrough and no strickthrough
+-------------------------UnStaged Commit:
+Receitp click on QTY should jump to QTY F8
+Receipt Clicked on price Jump to Price F6
+Impliment Admin Access
+Impiment Edit mode
+Bug: Clear button should only clear data fields nothing more
+Bug: Adding a Decimal doesn't register
+	When empty point registers
+Bug: Receipt Number Increments based on Item counting.
+	Other bug, Receipt number doesn't update to current reciept When making changes
+Fix: If Preview Then select Item, we need to click preview again.
 Fix: On Open Must clear all like Next
 	Hide Item picutre
 	RemoveTotal
@@ -100,7 +93,16 @@ Fix: On Open Must clear all like Next
 		Total
 
 
-						Staged Commit:
+-------------------------Staged Commit:
+Bug: Entering Item should clear Item selection. (ClearContents B6)
+Bug: When no item is selected, item image price and Qty should be empty
+Feature: Admin Password Validator
+Fix: Lock Sheet to not allow Edit to items and images, icons, buttons
+Bug: Change is Negative in Receipt footer Change: ()
+Fix: after removing item return back to E10 for the next item
+Bug: Performance, When locking Sheet takes forever to finish. (remove any iterations)
+Feature: Worksheet_Change() J4 needs to unlock with Admin password for modification no soft-Lock
+Bug: When copying item to sale, copy both the strickthrough and no strickthrough
 Bug: Remove Item deleats our formating rules.
 Add logic keyboard logic to block modification to locked cells and jump to E10
 Bug: CalculateAndUpdateTotal is not counting QTY
