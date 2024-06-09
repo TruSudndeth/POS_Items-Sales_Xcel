@@ -22,17 +22,19 @@ Code 39 Barcode Font $49.95
 
 Development Version Logs:
 __________________________________________
-UIUX: Call event when Quantity is selected and clear image, we cant enter QTY before adding item must find a solution for fast scanning either after scan. Clear cell before entering numeric values. allow numeric only.
-
-UX&Bug: When entering payment and you dont hit enter, clicking preview dissables cell on escape. When cell change should enter and then preview, (auto preview)
+Finishing up: Clear any unwanted Message boxes, MsgBox
 
 Bug: SelectionChange On Cells (E10:F10, I7, F6, F8, J4) Save the cell value as string then clear it. 
 	if selection change other then cell cleared past that value back to original cell.
 	Create a seperate function called by cells (E10:F10, I7, F6, F8,) and cell J4
 	Save value and re enter if cell changed from original cell.
+
+UX&Bug: When entering payment and you dont hit enter, clicking preview dissables cell on escape. When cell change should enter and then preview, (auto preview)
 	
 Round to cents Every Where Currency Regulations
 	=ROUND(I3 * 0.1, 2)
+	
+Bug: On Next Cash should be default on cell I6
 
 
 --------------------Beyond Basic POS
@@ -74,6 +76,9 @@ Feature: Password Encription and Decription for Validators
 Development Change Log:
 __________________________________________
 -------------------------UnStaged Commit:
+
+
+-------------------------Staged Commit:
 Receitp click on QTY should jump to QTY F8
 Receipt Clicked on price Jump to Price F6
 Impliment Admin Access
@@ -91,9 +96,6 @@ Fix: On Open Must clear all like Next
 		Tax
 		Change
 		Total
-
-
--------------------------Staged Commit:
 Bug: Entering Item should clear Item selection. (ClearContents B6)
 Bug: When no item is selected, item image price and Qty should be empty
 Feature: Admin Password Validator
