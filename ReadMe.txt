@@ -28,6 +28,7 @@ __________________________________________
 Finishing up: Clear any unwanted Message boxes, MsgBox
 Finishing Up: Confirm Any code from buttons isn't running more then need be when spam clicking.
 
+
 Feature: POS Scrollable Receipt window
 
 Todo: Add total price to Sales header
@@ -93,12 +94,12 @@ Feature: Password Encription and Decription for Validators
 Development Change Log:
 __________________________________________
 -------------------------UnStaged Commit:
-Bug: Sheet1 clearing all Locked celles when IsAdminLocked = false
-	LockAllCells() sets IsAdminLocked to True
 
 
 
 -------------------------Staged Commit:
+Bug: Sheet1 clearing all Locked celles when IsAdminLocked = false
+	LockAllCells() sets IsAdminLocked to True
 Feature: Add a default "No Image" image for empty directories items
 Feature: Clear and don't save Button, I3 and I7
 Items Sheet:
