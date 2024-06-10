@@ -25,7 +25,14 @@ __________________________________________
 Finishing up: Clear any unwanted Message boxes, MsgBox
 Finishing Up: Confirm Any code from buttons isn't running more then need be when spam clicking.
 
-Bug: first item in list is ignored when setting header
+Todo: Add total price to Sales header
+Todo: make the enire row clickable
+
+
+Feature: hide full directory on Item sheets
+	Create an open directory
+	Set cell value with directory
+
 UX: Sales Formatting should be Recept number Date, Cashier then Recept Total.
 		After that its the list of items
 Bug: Adding Item Locks used cells
@@ -78,9 +85,10 @@ Feature: Password Encription and Decription for Validators
 Development Change Log:
 __________________________________________
 -------------------------UnStaged Commit:
-
+Feature: open file on Sheet1 (POS)
 
 -------------------------Staged Commit:
+Bug: first item in list is ignored when setting header
 Bug: SelectionChange On Cells (E10:F10, I7, F6, F8, J4) Save the cell value as string then clear it. 
 	if selection change other then cell cleared past that value back to original cell.
 	Create a seperate function called by cells (E10:F10, I7, F6, F8,) and cell J4
