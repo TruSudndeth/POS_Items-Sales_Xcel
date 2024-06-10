@@ -28,9 +28,12 @@ __________________________________________
 Finishing up: Clear any unwanted Message boxes, MsgBox
 Finishing Up: Confirm Any code from buttons isn't running more then need be when spam clicking.
 
+Feature: Clear and don't save, I3 and I7
+
 Feature: POS Scrollable Receipt window
 
 Todo: Add total price to Sales header
+
 Bug: POS When Cell color red is below item list its not cleared. clear the entire column K:N On change clor before applying Color
 
 Selection: Sheet3 Conditional Formatting Home>Style
@@ -38,6 +41,7 @@ Selection: Sheet3 Conditional Formatting Home>Style
 
 Feature: add frese panes to Sheet 3
 
+Feature: open file on Sheet1 (POS)
 
 Bug: Adding Item Locks used cells
 Bug: On "Next" Cash should be default on cell I6
@@ -47,7 +51,9 @@ Bug: Icons and buttons not locked.
 UX&Bug: When entering payment and you dont hit enter, clicking preview dissables cell on escape. When cell change should enter and then preview, (auto preview)
 Round to cents Every Where Currency Regulations
 	=ROUND(I3 * 0.1, 2)
---------------------Beyond Basic POS
+	
+--------------------Beyond Basic POS----------------------------------------------------------
+Feature: Customizable colors from color pallet
 Feature: Receipt numbers should not roll over when exporting. continue Receipt numbers. 
  Item count of 999,999
 Feature: Create Custom Item and price to Items WorkSheet, while in POS sheet.
@@ -89,6 +95,9 @@ Feature: Password Encription and Decription for Validators
 Development Change Log:
 __________________________________________
 -------------------------UnStaged Commit:
+Feature: Add a default "No Image" image for empty directories items
+
+-------------------------Staged Commit:
 Items Sheet:
 	Feature: hide full directory on Item sheets
 	Create an open directory
@@ -96,11 +105,7 @@ Items Sheet:
 UX: Sales Formatting should be Recept number Date, Cashier then Recept Total.
 		After that its the list of items
 Feature: Item Sheed Keep header always visiable when scrolling down
-Feature: Sheet 1, must be able to scroll down the receipt while keeping the controls stationary.
-Feature: open file on Sheet1 (POS)
 Todo: make the enire row clickable
-
--------------------------Staged Commit:
 Bug: first item in list is ignored when setting header
 Bug: SelectionChange On Cells (E10:F10, I7, F6, F8, J4) Save the cell value as string then clear it. 
 	if selection change other then cell cleared past that value back to original cell.
@@ -144,33 +149,3 @@ Bug: When sheet is locked Tax rate cant be changed.
 Bug: TaxRate after entering its asking for admin password again.
 Bug: When hitting Preview finding last recipt item on column M must unlock M cell past then lock again.
 Feature: Impiment Remove items
-
-
-
-
-
-
-
-
-
-
-request:
-OK, we are creating the 9999 in the correct location at the end of the list, this indicated that we are able to detect an empty cell at the end of our list. given this logic. we need to add 9999 to that empty cell witch we are doing perfectly before any hidden logic is performed if you look at the code we are setting Me.Cells(i, 1).Value = 9999 after our hide and unhide logic. the order of operation is find the empty cell add 9999, unhide the logic in our case we seem to be using Me.Rows(i).Hidden = toggleState. Then unhide the cells, then after clear the cell with 9999 that we found. right now we are able to find the correct palace to put 9999, and we are deleting the correct cell with our place holder. 9999. just modify the code to follow the order of operations.
-
-
-If Not toggleState Then
-          For i = lastRow To Me.Rows.Count
-			If data(i, 1) = "" Then
-                  lastRow = i
-                  Exit For
-			End If
-		Next i
-	End If
-	
-toggleState = True
-For i = 2 To lastRow
-	If Me.Rows(i).Hidden Then
-		toggleState = False
-		Exit For
-	End If
-Next i
