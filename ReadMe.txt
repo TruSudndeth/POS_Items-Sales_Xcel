@@ -25,8 +25,10 @@ __________________________________________
 Finishing up: Clear any unwanted Message boxes, MsgBox
 Finishing Up: Confirm Any code from buttons isn't running more then need be when spam clicking.
 
+Bug: first item in list is ignored when setting header
 UX: Sales Formatting should be Recept number Date, Cashier then Recept Total.
 		After that its the list of items
+Bug: Adding Item Locks used cells
 Bug: On "Next" Cash should be default on cell I6
 Bug: Icons and buttons not locked.
 
