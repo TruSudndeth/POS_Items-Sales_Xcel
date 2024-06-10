@@ -30,7 +30,8 @@ Bug: POS When Cell color red is below item list its not cleared. clear the entir
 Selection: Conditional Formatting Home>Style
 	When selection change row color A:G to blue like POS and back to yellow else
 
-Feature: hide full directory on Item sheets
+Items Sheet:
+	Feature: hide full directory on Item sheets
 	Create an open directory
 	Set cell value with directory
 
