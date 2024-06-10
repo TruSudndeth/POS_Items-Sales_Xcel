@@ -4,13 +4,16 @@ How to Use:
 
 Setup:
 		1. Enable Macros
-
+		
 		Install Barcode 39 font (File Included)
-		2. Downlaod Barcode Font demo. Soft Code 39 (Demo)
-			https://www.softmatic.com/excel/manual.html
-		3. Unzip zip file Barcode-AddIn-Fonts-Excel-365-Demo.zip
-		4. Navigate to Fonts folder Right click and Install to Windows
-		5. 
+			1. Downlaod Barcode Font demo. Soft Code 39 (Demo)
+				https://www.softmatic.com/excel/manual.html
+			2. Unzip zip file Barcode-AddIn-Fonts-Excel-365-Demo.zip
+			3. Navigate to Fonts folder Right click and Install to Windows
+		Adding Images
+			1. add images to Resources/Items
+			2. make sure images are 512 X 512 px
+			3. under sheets Items select the cell where you wish to add image click "Add Image"
 
 
 Licenses:
@@ -25,18 +28,17 @@ __________________________________________
 Finishing up: Clear any unwanted Message boxes, MsgBox
 Finishing Up: Confirm Any code from buttons isn't running more then need be when spam clicking.
 
+Feature: POS Scrollable Receipt window
+
 Todo: Add total price to Sales header
-Bug: POS When Cell color red is below item list its not cleared. clear the entire column K:N 
-Selection: Conditional Formatting Home>Style
+Bug: POS When Cell color red is below item list its not cleared. clear the entire column K:N On change clor before applying Color
+
+Selection: Sheet3 Conditional Formatting Home>Style
 	When selection change row color A:G to blue like POS and back to yellow else
 
-Items Sheet:
-	Feature: hide full directory on Item sheets
-	Create an open directory
-	Set cell value with directory
+Feature: add frese panes to Sheet 3
 
-UX: Sales Formatting should be Recept number Date, Cashier then Recept Total.
-		After that its the list of items
+
 Bug: Adding Item Locks used cells
 Bug: On "Next" Cash should be default on cell I6
 Bug: Icons and buttons not locked.
@@ -87,6 +89,14 @@ Feature: Password Encription and Decription for Validators
 Development Change Log:
 __________________________________________
 -------------------------UnStaged Commit:
+Items Sheet:
+	Feature: hide full directory on Item sheets
+	Create an open directory
+	Set cell value with file name
+UX: Sales Formatting should be Recept number Date, Cashier then Recept Total.
+		After that its the list of items
+Feature: Item Sheed Keep header always visiable when scrolling down
+Feature: Sheet 1, must be able to scroll down the receipt while keeping the controls stationary.
 Feature: open file on Sheet1 (POS)
 Todo: make the enire row clickable
 
