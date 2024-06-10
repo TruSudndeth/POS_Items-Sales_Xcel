@@ -28,6 +28,8 @@ __________________________________________
 Finishing up: Clear any unwanted Message boxes, MsgBox
 Finishing Up: Confirm Any code from buttons isn't running more then need be when spam clicking.
 
+Bug: Sheet1 clearing all Locked celles when IsAdminLocked = false
+
 Feature: Clear and don't save, I3 and I7
 
 Feature: POS Scrollable Receipt window
