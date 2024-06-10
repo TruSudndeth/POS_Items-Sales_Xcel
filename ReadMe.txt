@@ -26,8 +26,9 @@ Finishing up: Clear any unwanted Message boxes, MsgBox
 Finishing Up: Confirm Any code from buttons isn't running more then need be when spam clicking.
 
 Todo: Add total price to Sales header
-Todo: make the enire row clickable
-
+Bug: POS When Cell color red is below item list its not cleared. clear the entire column K:N 
+Selection: Conditional Formatting Home>Style
+	When selection change row color A:G to blue like POS and back to yellow else
 
 Feature: hide full directory on Item sheets
 	Create an open directory
@@ -86,6 +87,7 @@ Development Change Log:
 __________________________________________
 -------------------------UnStaged Commit:
 Feature: open file on Sheet1 (POS)
+Todo: make the enire row clickable
 
 -------------------------Staged Commit:
 Bug: first item in list is ignored when setting header
