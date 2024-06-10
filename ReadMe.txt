@@ -28,8 +28,8 @@ __________________________________________
 Finishing up: Clear any unwanted Message boxes, MsgBox
 Finishing Up: Confirm Any code from buttons isn't running more then need be when spam clicking.
 
+Bug: Sheet3 When multiselect selection collapses, i should skip when target is multi select
 
-Feature: POS Scrollable Receipt window
 
 Todo: Add total price to Sales header
 
@@ -52,6 +52,7 @@ Round to cents Every Where Currency Regulations
 	=ROUND(I3 * 0.1, 2)
 	
 --------------------Beyond Basic POS----------------------------------------------------------
+
 Feature: Customizable colors from color pallet
 Feature: Receipt numbers should not roll over when exporting. continue Receipt numbers. 
  Item count of 999,999
@@ -89,15 +90,17 @@ Feature: Seperate all sheets for version control. POS, Items, Sales.
 
 Feature: Create a Cashier Log in - with their own Password, also they must enter their password twice once for initial and the second to confirm the initial password.
 Feature: Password Encription and Decription for Validators
+Feature: POS Scrollable Receipt window (Not possible with Excel)
+
 
 
 Development Change Log:
-__________________________________________
+_____________________________________________________________________________
 -------------------------UnStaged Commit:
 
 
-
 -------------------------Staged Commit:
+Feature: Buttons, Fold all, UnFold All on sales sheet.
 Bug: Sheet1 clearing all Locked celles when IsAdminLocked = false
 	LockAllCells() sets IsAdminLocked to True
 Feature: Add a default "No Image" image for empty directories items
