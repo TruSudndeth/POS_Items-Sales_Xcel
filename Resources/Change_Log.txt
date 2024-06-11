@@ -13,10 +13,9 @@ Finish up: Round to cents Every Where Currency Regulations
 	=ROUND(I3 * 0.1, 2)
 
 
-ReceiptUpdated = false at the end of Update receipt
+ReceiptUpdated = false at the end of Update receipt (!Not able to find!)
 
 Softlock message should not say Admin in it.
-Bug: Clear All button doesn't work.
 
 UX&Bug: When entering payment and you don't hit enter, clicking preview disables cell on escape. When cell change should enter and then preview, (auto preview)
 
@@ -76,6 +75,7 @@ _____________________________________________________________________________
 
 
 -------------------------Staged Commit:
+Bug: Clear All button doesn't work.
 Bug: Multi cell on clear selection cleared On the multi selection skip if multi select.
 Bug: Multi imagePic case doesn't delete all "imagePic"s
 Bug: Prevent full sheet selection.
