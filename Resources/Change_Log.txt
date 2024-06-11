@@ -9,17 +9,13 @@ In progress Change Logs:
 __________________________________________
 Finishing up: Clear any unwanted Message boxes, MsgBox
 Finishing Up: Confirm Any code from buttons isn't running more then need be when spam clicking.
+Finish up: Round to cents Every Where Currency Regulations
+	=ROUND(I3 * 0.1, 2)
 
-
-
-
-Bug: On "Next" Cash should be default on cell I6
-Bug: Icons and buttons not locked.
 
 
 UX&Bug: When entering payment and you don't hit enter, clicking preview disables cell on escape. When cell change should enter and then preview, (auto preview)
-Round to cents Every Where Currency Regulations
-	=ROUND(I3 * 0.1, 2)
+
 
 
 --------------------Beyond Basic POS Work Sheet ----------------------------------------
@@ -72,11 +68,13 @@ Feature: POS Scrollable Receipt window (Not possible with Excel)
 Development Change Log:
 _____________________________________________________________________________
 -------------------------UnStaged Commit:
-Performance Bug: CalculateAndUpdateTotal() Should find the last row before an empty cell and not iterate all the way down to K996.
-Bug: Adding Item Locks used cells
+Bug: Icons and buttons not locked.
+Bug: On "Next" Cash should be default on cell I6
 
 
 -------------------------Staged Commit:
+Performance Bug: CalculateAndUpdateTotal() Should find the last row before an empty cell and not iterate all the way down to K996.
+Bug: Adding Item Locks used cells
 Bug: POS When Cell color red is below item list its not cleared. clear the entire column K:N On change clor before applying Color
 Feature: add freeze panes to Sheet 3
 Feature: open file on Sheet1 (POS)
