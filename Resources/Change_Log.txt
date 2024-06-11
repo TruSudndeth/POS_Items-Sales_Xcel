@@ -13,13 +13,13 @@ Finishing Up: Confirm Any code from buttons isn't running more then need be when
 Finish up: Round to cents Every Where Currency Regulations
 	=ROUND(I3 * 0.1, 2)
 
-Bug: when saving receipt we need to open our Resource/Receipt directory.
 
 
 
 
 --------------------Beyond Basic POS Work Sheet ----------------------------------------
 
+Bug: when saving receipt we need to open our Resource/Receipt directory.
 Auto Feature: when printing to PDF reciept number must be added to name including long time stamp.
 Feature: Auto Save document when button Next, Preview is pressed
 Feature: Sheet3 Conditional Formatting Home>Style
