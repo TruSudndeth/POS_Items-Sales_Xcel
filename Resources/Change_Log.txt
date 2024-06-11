@@ -9,10 +9,11 @@ In progress Change Logs:
 __________________________________________
 Finishing up: Clear any unwanted Message boxes, MsgBox
 Finishing Up: Confirm Any code from buttons isn't running more then need be when spam clicking.
+
 Finish up: Round to cents Every Where Currency Regulations
 	=ROUND(I3 * 0.1, 2)
 
-
+Bug: when saving receipt we need to open our Resource/Receipt directory.
 
 
 
@@ -67,10 +68,10 @@ Feature: POS Scrollable Receipt window (Not possible with Excel)
 Development Change Log:
 _____________________________________________________________________________
 -------------------------UnStaged Commit:
-UX&Bug: When entering payment and you don't hit enter, clicking preview disables cell on escape. When cell change should enter and then preview, (auto preview)
 
 
 -------------------------Staged Commit:
+UX&Bug: When entering payment and you don't hit enter, clicking preview disables cell on escape. When cell change should enter and then preview, (auto preview)
 Bug: Recalculate Tax must clear receipt. then change color to red. also clear preview varaibles.
 ReceiptUpdated = false at the end of Update receipt (!Not able to find!)
 custom: Password Popup: Added custom Softlock Password hidden userform

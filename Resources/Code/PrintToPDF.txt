@@ -39,3 +39,45 @@ ErrorHandler:
         MsgBox "An unexpected error occurred: " & Err.Description, vbCritical, "Error"
     End If
 End Sub
+
+
+
+
+
+
+Sub PrintReceipt()
+    On Error GoTo ErrorHandler ' Set up error handling
+    
+    If Not IsPaymentSufficient Then
+        Exit Sub
+    End If
+    
+    If Not ReceiptUpdated Then
+        UpdateReceipt ' Call UpdateReceipt if it hasn't been called
+    End If
+    
+    ' Set the default path for saving the file
+    Dim defaultPath As String
+    defaultPath = ThisWorkbook.Path & "\Resources\Receipts\" ' Change the folder path as needed
+    
+    ' Open the Save As dialog
+    Dim filePath As Variant
+    filePath = Application.GetSaveAsFilename(FileFilter:="PDF Files (*.pdf), *.pdf", InitialFileName:=defaultPath & "Receipt.pdf")
+    
+    With Sheet1
+        ' Attempt to print
+        .PrintOut , , , , True, , , , False
+    End With
+    
+    ReceiptPrinted = True ' Set the flag to indicate the receipt was printed
+    
+    Exit Sub ' Exit the subroutine normally
+
+ErrorHandler:
+    If Err.Number = 1004 Then
+        MsgBox "Print operation was canceled.", vbExclamation, "Print Canceled"
+        Err.Clear ' Clear the error
+    Else
+        MsgBox "An unexpected error occurred: " & Err.Description, vbCritical, "Error"
+    End If
+End Sub
