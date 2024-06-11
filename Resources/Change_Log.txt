@@ -12,11 +12,9 @@ Finishing Up: Confirm Any code from buttons isn't running more then need be when
 Finish up: Round to cents Every Where Currency Regulations
 	=ROUND(I3 * 0.1, 2)
 
-Error: IsCellLocked cant handel multicells skip when multi select.
 
 ReceiptUpdated = false at the end of Update receipt
 
-Bug: Multi cell on clear selection cleared On the multi selection skip if multi select.
 
 UX&Bug: When entering payment and you don't hit enter, clicking preview disables cell on escape. When cell change should enter and then preview, (auto preview)
 
@@ -72,6 +70,9 @@ Feature: POS Scrollable Receipt window (Not possible with Excel)
 Development Change Log:
 _____________________________________________________________________________
 -------------------------UnStaged Commit:
+Bug: Multi imagePic case doesn't delete all "imagePic"s
+Error: IsCellLocked cant handel multicells skip when multi select.
+Bug: Multi cell on clear selection cleared On the multi selection skip if multi select.
 
 
 -------------------------Staged Commit:
