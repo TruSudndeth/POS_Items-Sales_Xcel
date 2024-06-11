@@ -1,0 +1,29 @@
+Private Function IsCellLocked(cell As Range) As Boolean
+    ' Check if the cell is locked, considering merged cells
+    Dim cellToCheck As Range
+
+    ' If the cell is part of a multi-cell range, exit the function
+    If cell.Count > 1 Then
+        IsCellLocked = False
+        Exit Function
+    End If
+
+    On Error Resume Next
+    ' If the cell is part of a merged area, check the entire merged area
+    If cell.MergeCells Then
+        Set cellToCheck = cell.MergeArea.Cells(1, 1)
+    Else
+        Set cellToCheck = cell
+    End If
+    On Error GoTo 0
+    
+    ' Return if the cell is locked
+    If Not cellToCheck Is Nothing Then
+        IsCellLocked = cellToCheck.Locked
+    Else
+        IsCellLocked = cell.Locked
+    End If
+End Function
+
+
+

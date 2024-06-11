@@ -12,7 +12,11 @@ Finishing Up: Confirm Any code from buttons isn't running more then need be when
 Finish up: Round to cents Every Where Currency Regulations
 	=ROUND(I3 * 0.1, 2)
 
+Error: IsCellLocked cant handel multicells skip when multi select.
 
+ReceiptUpdated = false at the end of Update receipt
+
+Bug: Multi cell on clear selection cleared On the multi selection skip if multi select.
 
 UX&Bug: When entering payment and you don't hit enter, clicking preview disables cell on escape. When cell change should enter and then preview, (auto preview)
 
@@ -68,11 +72,12 @@ Feature: POS Scrollable Receipt window (Not possible with Excel)
 Development Change Log:
 _____________________________________________________________________________
 -------------------------UnStaged Commit:
-Bug: Icons and buttons not locked.
-Bug: On "Next" Cash should be default on cell I6
 
 
 -------------------------Staged Commit:
+Bug: Icons and buttons not locked.
+Bug: On "Next" Cash should be default on cell I6
+Optimization But: Removed redundant Calculations and events
 Performance Bug: CalculateAndUpdateTotal() Should find the last row before an empty cell and not iterate all the way down to K996.
 Bug: Adding Item Locks used cells
 Bug: POS When Cell color red is below item list its not cleared. clear the entire column K:N On change clor before applying Color
