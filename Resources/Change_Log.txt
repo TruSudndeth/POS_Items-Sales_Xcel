@@ -11,11 +11,9 @@ Finishing up: Clear any unwanted Message boxes, MsgBox
 Finishing Up: Confirm Any code from buttons isn't running more then need be when spam clicking.
 
 
-
-bug: when printing to PDF reciept number must be added to name including long time stamp.
-
-
 Bug: Adding Item Locks used cells
+
+
 Bug: On "Next" Cash should be default on cell I6
 Bug: Icons and buttons not locked.
 
@@ -27,6 +25,7 @@ Round to cents Every Where Currency Regulations
 
 --------------------Beyond Basic POS Work Sheet ----------------------------------------
 
+Auto Feature: when printing to PDF reciept number must be added to name including long time stamp.
 Feature: Auto Save document when button Next, Preview is pressed
 Feature: Sheet3 Conditional Formatting Home>Style
 	When selection change row color A:G to blue like POS and back to yellow else
@@ -74,13 +73,14 @@ Feature: POS Scrollable Receipt window (Not possible with Excel)
 Development Change Log:
 _____________________________________________________________________________
 -------------------------UnStaged Commit:
+Performance Bug: CalculateAndUpdateTotal() Should find the last row before an empty cell and not iterate all the way down to K996.
+
+
+-------------------------Staged Commit:
 Bug: POS When Cell color red is below item list its not cleared. clear the entire column K:N On change clor before applying Color
 Feature: add freeze panes to Sheet 3
 Feature: open file on Sheet1 (POS)
 Added: a start receipt number cell in POS system.
-
-
--------------------------Staged Commit:
 Todo: Add total price to Sales header
 Bug: Sheet3 When multiselect selection collapses, i should skip when target is multi select
 Feature: Buttons, Fold all, UnFold All on sales sheet.
