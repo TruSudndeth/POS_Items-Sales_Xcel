@@ -13,9 +13,7 @@ Finish up: Round to cents Every Where Currency Regulations
 	=ROUND(I3 * 0.1, 2)
 
 
-ReceiptUpdated = false at the end of Update receipt (!Not able to find!)
 
-Softlock message should not say Admin in it.
 
 UX&Bug: When entering payment and you don't hit enter, clicking preview disables cell on escape. When cell change should enter and then preview, (auto preview)
 
@@ -71,11 +69,13 @@ Feature: POS Scrollable Receipt window (Not possible with Excel)
 Development Change Log:
 _____________________________________________________________________________
 -------------------------UnStaged Commit:
-custom: Password Popup: Added custom Softlock Password hidden userform
-Custom: Password Popup: 
 
 
 -------------------------Staged Commit:
+ReceiptUpdated = false at the end of Update receipt (!Not able to find!)
+custom: Password Popup: Added custom Softlock Password hidden userform
+Custom: Password Popup: Added Custom Admin password
+Softlock message should not say Admin in it.
 Bug: Clear All button doesn't work.
 Bug: Multi cell on clear selection cleared On the multi selection skip if multi select.
 Bug: Multi imagePic case doesn't delete all "imagePic"s
