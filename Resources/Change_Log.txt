@@ -11,7 +11,6 @@ Finishing up: Clear any unwanted Message boxes, MsgBox
 Finishing Up: Confirm Any code from buttons isn't running more then need be when spam clicking.
 
 
-Bug: Adding Item Locks used cells
 
 
 Bug: On "Next" Cash should be default on cell I6
@@ -74,6 +73,7 @@ Development Change Log:
 _____________________________________________________________________________
 -------------------------UnStaged Commit:
 Performance Bug: CalculateAndUpdateTotal() Should find the last row before an empty cell and not iterate all the way down to K996.
+Bug: Adding Item Locks used cells
 
 
 -------------------------Staged Commit:
