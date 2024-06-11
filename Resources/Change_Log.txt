@@ -71,7 +71,8 @@ Feature: POS Scrollable Receipt window (Not possible with Excel)
 Development Change Log:
 _____________________________________________________________________________
 -------------------------UnStaged Commit:
-
+custom: Password Popup: Added custom Softlock Password hidden userform
+Custom: Password Popup: 
 
 
 -------------------------Staged Commit:
