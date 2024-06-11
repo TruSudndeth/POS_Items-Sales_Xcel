@@ -73,7 +73,7 @@ _____________________________________________________________________________
 Bug: Multi imagePic case doesn't delete all "imagePic"s
 Error: IsCellLocked cant handel multicells skip when multi select.
 Bug: Multi cell on clear selection cleared On the multi selection skip if multi select.
-
+Bug: Prevent full sheet selection.
 
 -------------------------Staged Commit:
 Bug: Icons and buttons not locked.
