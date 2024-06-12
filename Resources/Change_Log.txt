@@ -16,7 +16,6 @@ Finish up: Round to cents Every Where Currency Regulations
 
 
 
-
 --------------------Beyond Basic POS Work Sheet ----------------------------------------
 
 Bug: when saving receipt we need to open our Resource/Receipt directory.
@@ -68,9 +67,11 @@ Feature: POS Scrollable Receipt window (Not possible with Excel)
 Development Change Log:
 _____________________________________________________________________________
 -------------------------UnStaged Commit:
+Bug: POS, Avoid price to be empty F6, also QTY F8, also I7. default should be 0
 
 
 -------------------------Staged Commit:
+UX_Bug: Clicking Receipt QTY and Item price to change didn't store previous price or Qty.
 UX&Bug: When entering payment and you don't hit enter, clicking preview disables cell on escape. When cell change should enter and then preview, (auto preview)
 Bug: Recalculate Tax must clear receipt. then change color to red. also clear preview varaibles.
 ReceiptUpdated = false at the end of Update receipt (!Not able to find!)
