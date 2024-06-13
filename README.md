@@ -1,3 +1,7 @@
+# Credit due to Excel For Freelancers for the template
+How to create a Powerful Point Of Sale Application in Excel
+https://www.youtube.com/watch?v=C-jw10s8esw&t=1993s
+
 # POS_Items-Sales_Xcel
 Point Of Sale in xcel with a POS interface, Items sheet for inventory, and Sales for sales history.
 
